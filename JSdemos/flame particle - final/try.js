@@ -40,6 +40,9 @@ window.onload = function(){
 		this.radius = 10 + Math.random() * 20;
 		this.life = 20 + Math.random() * 10;
 		this.remaining_life = this.life;
+		this.r = Math.round(Math.random()*255);
+		this.g = Math.round(Math.random()*255);
+		this.b = Math.round(Math.random()*255);
 	}
 
 
@@ -54,9 +57,9 @@ window.onload = function(){
 			ctx.beginPath();
 			p.opacity = Math.round(p.remaining_life/p.life*100)/100;
 			var gradient = ctx.createRadialGradient(p.location.x, p.location.y, 0, p.location.x, p.location.y, p.radius);
-			gradient.addColorStop(0, "rgba(141,215,255,0.5)");
-			gradient.addColorStop(0.5, "rgba(141,215,255,0.5)");
-			gradient.addColorStop(1, "rgba(141,215,255,0.5)");
+			gradient.addColorStop(0, "rgba("+p.r+", "+p.g+", "+p.b+", "+p.opacity+")");
+			gradient.addColorStop(0.5, "rgba("+p.r+", "+p.g+", "+p.b+", "+p.opacity+")");
+			gradient.addColorStop(1, "rgba("+p.r+", "+p.g+", "+p.b+", 0)");
 			ctx.fillStyle = gradient;
 			ctx.arc(p.location.x, p.location.y, p.radius, Math.PI*2, false);
 			ctx.fill();
@@ -71,6 +74,6 @@ window.onload = function(){
 		}		
 	}
 
-	setInterval(draw, 33);
 	//定时循环出发draw函数
+	setInterval(draw, 33);
 }
